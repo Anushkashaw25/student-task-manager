@@ -1,0 +1,271 @@
+
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #f5f7fb;
+    color: #243047;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #243b63;
+    margin-bottom: 8px;
+}
+
+h2 {
+    color: #243b63;
+    margin-top: 30px;
+}
+
+/* Dashboard cards */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 24px 0;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e1e7f0;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 4px 12px rgba(30, 50, 80, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(30, 50, 80, 0.1);
+}
+
+.stat-card h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    color: #64748b;
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: #2458a6;
+}
+
+/* Completion progress bar */
+.progress-section {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #e1e7f0;
+    border-radius: 12px;
+    margin: 20px 0 28px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 12px;
+    background: #e8edf5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #22a06b;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+/* Search and filter form */
+form[action="/"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #e1e7f0;
+}
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: #ffffff;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 7px;
+    background: #2458a6;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #193f7a;
+}
+
+/* Individual task cards */
+.task {
+    background: #ffffff;
+    border: 1px solid #e1e7f0;
+    border-left: 5px solid #94a3b8;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 18px 0;
+    box-shadow: 0 3px 10px rgba(30, 50, 80, 0.04);
+}
+
+.task h3 {
+    margin-top: 0;
+    color: #243b63;
+}
+
+.task a {
+    color: #2458a6;
+    margin-right: 12px;
+}
+
+/* Completed tasks */
+.task.completed {
+    border-left-color: #22a06b;
+    background: #f0fdf4;
+    opacity: 1;
+}
+
+.task.completed h3 {
+    text-decoration: line-through;
+    color: #64748b;
+}
+
+/* Overdue tasks */
+.task.overdue {
+    border: 1px solid #fecaca;
+    border-left: 5px solid #dc2626;
+    background: #fff5f5;
+}
+
+.overdue-label {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* Priority badges */
+.priority-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.priority-low {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.priority-medium {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.priority-high {
+    background: #ffedd5;
+    color: #c2410c;
+}
+
+/* Add-task form */
+form[action="/tasks"] {
+    background: #ffffff;
+    border: 1px solid #e1e7f0;
+    border-radius: 12px;
+    padding: 22px;
+    margin-top: 28px;
+}
+
+form[action="/tasks"] label {
+    display: block;
+    margin-bottom: 16px;
+}
+
+form[action="/tasks"] input,
+form[action="/tasks"] select {
+    margin-top: 8px;
+}
+
+/* Task action forms */
+.task form {
+    display: inline-block;
+    margin: 10px 8px 0 0;
+}
+
+.task form button {
+    margin: 0;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+    body {
+        margin: 15px auto;
+        padding: 14px;
+    }
+
+    .dashboard {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card p {
+        font-size: 25px;
+    }
+
+    form[action="/"] {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    form[action="/"] input,
+    form[action="/"] select,
+    form[action="/"] button {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+.error-message {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 12px;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    margin: 15px 0;
+
+}

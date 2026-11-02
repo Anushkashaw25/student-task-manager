@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Task Manager</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Student Task Manager</h1>
+<h2>Welcome!</h2>
+
+<% if (error) { %>
+<p class="error-message"><%= error %></p>
+<% } %>
+
+
+<div class="dashboard">
+    <div class="stat-card">
+        <h3>Total Tasks</h3>
+        <p><%= totalTasks %></p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Overdue Tasks</h3>
+        <p><%= overdueTasks %></p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Completed</h3>
+        <p><%= completedTasks %></p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Incomplete</h3>
+        <p><%= incompleteTasks %></p>
+    </div>
+
+    <div class="stat-card">
+        <h3>High Priority</h3>
+        <p><%= highPriorityTasks %></p>
+    </div>
+</div>
+
+<h2>Your Tasks</h2>
+<div class="progress-section">
+    <div class="progress-info">
+        <span>Overall Completion</span>
+        <strong><%= completionPercentage %>%</strong>
+    </div>
+
+    <div class="progress-track">
+        <div
+        class="progress-fill"
+        style="width: <%= completionPercentage %>%">
+        </div>
+    </div>
+</div>
+
+    <form action="/" method="GET">
+
+        <input
+        type="text"
+        name="search"
+        placeholder="Search task..."
+        value="<%= search %>">
+
+        <select name="priority">
+    <option value="" <%= priority === "" ? "selected" : "" %>>All Priorities</option>
+    <option value="Low" <%= priority === "Low" ? "selected" : "" %>>Low</option>
+    <option value="Medium" <%= priority === "Medium" ? "selected" : "" %>>Medium</option>
+    <option value="High" <%= priority === "High" ? "selected" : "" %>>High</option>
+</select>
+
+       <select name="status">
+    <option value="" <%= status === "" ? "selected" : "" %>>All Tasks</option>
+    <option value="incomplete" <%= status === "incomplete" ? "selected" : "" %>>Incomplete</option>
+    <option value="completed" <%= status === "completed" ? "selected" : "" %>>Completed</option>
+</select>
+       <select name="sort">
+    <option value="" <%= sort === "" ? "selected" : "" %>>Earliest Deadline</option>
+    <option value="latest" <%= sort === "latest" ? "selected" : "" %>>Latest Deadline</option>
+</select>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+  <% if (tasks.length === 0) { %>
+    <p>No tasks found. Add a new task or change your filters.</p>
+<% } %>
+
+<% for(let task of tasks) { %>
+    <div class="task <%= task.completed ? 'completed' : '' %> <%= !task.completed && task.deadline < today ? 'overdue' : '' %>">
+        <% if (!task.completed && task.deadline < today) { %>
+    <p class="overdue-label">⚠️ Overdue</p>
+<% } %>
+        <h3><%= task.title %></h3>
+        <p>Subject: <%= task.subject %></p>
+        <p>Deadline: <%= task.deadline %></p>
+        <p>
+            Priority:
+            <span class="priority-badge priority-<%= task.priority.toLowerCase() %>">
+                <%= task.priority %>
+            </span> 
+        </p>
+
+        <a href="/task/<%= task._id %>/edit">Edit</a>
+
+        <form action="/tasks/<%=  task._id %>/delete" method="POST">
+            <button>Delete</button>
+        </form>
+        <form action="/task/<%= task._id %>/complete" method="POST">
+            <button>
+                <%=task.completed ? "Mark Incomplete" : "Mark Complete" %>
+            </button>
+        </form> 
+    </div>
+  <% } %>
+
+   <form action="/tasks" method="POST">
+        <label>Task Title: 
+        <input type="text" name="title" required>
+    </label>
+    <label>Subject:
+        <input type="text" name="subject" required>
+    </label>
+    <label>Deadline:
+        <input type="date" name="deadline" required>
+    </label>
+    <label>Priority:
+       <select name="priority">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+       </select>
+    </label>
+    <button >Add Task</button>
+    </form>
+</body>
+</html>
+
+
+    
