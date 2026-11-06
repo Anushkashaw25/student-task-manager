@@ -126,20 +126,19 @@ http://localhost:8080
 ### Dashboard
 ![Dashboard](screenshots/Screenshot%202026-11-06%20160457.png)
 
-### Login Page
-![Login Page](screenshots/Screenshot%202026-11-06%20160520.png)
-
-### Registration Page
-![Registration Page](screenshots/Screenshot%202026-11-06%20160543.png)
+### Profile Page
+![Profile Page](screenshots/Screenshot%202026-11-06%20160520.png)
 
 ### Add/Edit Task
-![Add/Edit Task](screenshots/Screenshot%202026-11-06%20160609.png)
+![Add/Edit Task](screenshots/Screenshot%202026-11-06%20160543.png)
 
-### Profile Page
-![Profile Page](screenshots/Screenshot%202026-11-06%20160639.png)
+### Registration Page
+![Registration Page](screenshots/Screenshot%202026-11-06%20160609.png)
+
+### login Page
+![login Page](screenshots/Screenshot%202026-11-06%20160639.png)
 
 ## Security Notes
-
 - Never commit your `.env` file.
 - Use a strong, unique session secret.
 - Configure secure cookies and HTTPS when deploying.
