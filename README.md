@@ -123,13 +123,20 @@ http://localhost:8080
 
 ## Screenshots
 
-Add screenshots of your application here:
+### Dashboard
+![Dashboard](screenshots/Screenshot%202026-11-06%20160457.png)
 
-- Dashboard
-- Login page
-- Registration page
-- Add/Edit Task
-- Profile page
+### Login Page
+![Login Page](screenshots/Screenshot%202026-11-06%20160520.png)
+
+### Registration Page
+![Registration Page](screenshots/Screenshot%202026-11-06%20160543.png)
+
+### Add/Edit Task
+![Add/Edit Task](screenshots/Screenshot%202026-11-06%20160609.png)
+
+### Profile Page
+![Profile Page](screenshots/Screenshot%202026-11-06%20160639.png)
 
 ## Security Notes
 
