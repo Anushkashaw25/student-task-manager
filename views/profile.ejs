@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <h1>My Profile</h1>
+
+    <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+    <% } %>
+
+    <% if (success) { %>
+        <p class="success-message"><%= success %></p>
+    <% } %>
+
+    <div class="profile-card">
+
+        <h2>Account Information</h2>
+
+        <p>
+            <strong>Email:</strong>
+            <%= currentUser.email %>
+        </p>
+
+        <form action="/profile" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+            <label for="name">Your Name:</label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="<%= currentUser.name %>"
+                required
+                minlength="2"
+            >
+
+            <button type="submit">Update Profile</button>
+
+        </form>
+
+    </div>
+
+    <div class="profile-class">
+        <h2>Change Password</h2>
+        <form action="/profile/change-password" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <label for="currentPassword">
+                Current Password:
+            </label>
+            <input
+                type="password"
+                id="currentPassword"
+                name="currentPassword"
+                required
+                >
+                <label for="newPassword">
+                    New Password:
+                </label>
+                <input
+                    type="password"
+                    id="newPassword"
+                    name="newPassword"
+                    minlength="6"
+                    required
+                >
+                <label for="confirmPassword">
+                    Confirm New Password:
+                </label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    minlength="6"
+                    required
+                >
+                <button type="submit">Change Password</button>
+        </form>
+    </div>
+
+    <p><a href="/">Back to Dashboard</a></p>
+
+    <form action="/logout" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>

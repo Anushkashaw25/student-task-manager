@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>Student Task Manager</h1>
-<h2>Welcome!</h2>
+   <div class="welcome-section">
+    <div>
+        <h1>Welcome back, <%= currentUser.name %>!</h1>
+        <p>Here's your task overview for today.</p>
+    </div>
+
+    <a href="/profile">My Profile</a>
+</div>
 
 <% if (error) { %>
 <p class="error-message"><%= error %></p>
@@ -106,9 +112,11 @@
         <a href="/task/<%= task._id %>/edit">Edit</a>
 
         <form action="/tasks/<%=  task._id %>/delete" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <button>Delete</button>
         </form>
         <form action="/task/<%= task._id %>/complete" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <button>
                 <%=task.completed ? "Mark Incomplete" : "Mark Complete" %>
             </button>
@@ -117,6 +125,7 @@
   <% } %>
 
    <form action="/tasks" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <label>Task Title: 
         <input type="text" name="title" required>
     </label>
@@ -135,6 +144,12 @@
     </label>
     <button >Add Task</button>
     </form>
+
+<form action="/logout" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button type="submit">Logout</button>
+</form>
+
 </body>
 </html>
 

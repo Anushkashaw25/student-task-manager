@@ -12,6 +12,7 @@
     <p class="error-message"><%= error %></p>
 <% } %>
      <form action="/task/<%= task._id %>/edit" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <label>
             Task Title
             <input 
