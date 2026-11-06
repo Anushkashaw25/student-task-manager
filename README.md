@@ -61,7 +61,6 @@ student-task-manager/
 ├── package.json
 ├── package-lock.json
 ├── .gitignore
-└── .env
 ```
 
 ## Installation and Setup
@@ -69,7 +68,7 @@ student-task-manager/
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Anushkashaw25/student-task-manager.git
 ```
 
 ### 2. Navigate to the project directory
